@@ -17,7 +17,7 @@ public class Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true) // 코드리뷰 반영, unique 추가
     @Enumerated(EnumType.STRING)
     private FoodName name;
 }

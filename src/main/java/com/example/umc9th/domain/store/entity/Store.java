@@ -1,6 +1,5 @@
 package com.example.umc9th.domain.store.entity;
 
-import com.example.umc9th.domain.mission.entity.Mission;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +24,6 @@ public class Store {
     private String detailAddress;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id")
-    private Location location;
+    @JoinColumn(name = "region_id")
+    private Region region;
 }
