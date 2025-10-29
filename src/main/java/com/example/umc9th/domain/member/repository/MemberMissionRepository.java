@@ -36,4 +36,30 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
                             @Param("statuses")Boolean status,
                             Pageable pageable
                             );
+
+    /*  홈화면에서 7/10 나타내는 쿼리 작성
+    SELECT COUNT(mm.id)
+    FROM member_mission AS mm
+    JOIN mission AS m ON mm.mission_id = m.id
+    JOIN store AS s ON m.store_id = s.id
+    JOIN region AS r ON s.region_id = r.id
+    WHERE mm.member_id = ?
+    AND mm.status = 'SUCCESS'
+    AND r.id = ?;
+    */
+
+    @Query("SELECT COUNT(mm.id)" +
+            "FROM MemberMission mm " +
+            "JOIN mm.mission m " +
+            "JOIN m.store s " +
+            "JOIN s.region r " +
+            "WHERE mm.member.id = :memberId " +
+            "AND mm.status = :success " +
+            "AND r.id = :regionId")
+
+    Long countSucessfulMissionByMemberAndRegion(
+            @Param("memberId") Long memberId,
+            @Param("regionId") Long regionId,
+            @Param("success") Boolean success
+    );
 }
