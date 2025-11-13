@@ -1,7 +1,6 @@
 package com.example.umc9th.domain.review.service;
 
 import com.example.umc9th.domain.review.converter.ReviewConverter;
-import com.example.umc9th.domain.review.dto.res.ReviewResDTO;
 import com.example.umc9th.domain.review.entity.QReview;
 import com.example.umc9th.domain.review.entity.Review;
 import com.example.umc9th.domain.review.repository.ReviewRepository;
@@ -53,7 +52,7 @@ public class ReviewQueryService {
 
     // 미션
     // ReviewListDTO
-    public ReviewListDTO getReviews(Long storeId, Float star) {
+    public List<ReviewDTO> getReviews(Long storeId, Float star) {
 
         // 1. store 유무 확인
         Store store = storeRepository.findById(storeId)

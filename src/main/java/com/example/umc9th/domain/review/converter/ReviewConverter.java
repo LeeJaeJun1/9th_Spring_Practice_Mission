@@ -9,17 +9,14 @@ import static com.example.umc9th.domain.review.dto.res.ReviewResDTO.*;
 
 public class ReviewConverter {
 
-    public static ReviewListDTO toDTOList(List<Review> reviews) {
-        List<ReviewDTO> reviewDTOs = reviews.stream()
+    public static List<ReviewDTO> toDTOList(List<Review> reviews) {
+        return reviews.stream()
                 .map(ReviewConverter::toDTO)
                 .toList();
-
-        return ReviewListDTO.builder()
-                .reviews(reviewDTOs)
-                .build();
     }
 
-    private static ReviewDTO toDTO(Review review) {
+
+    private static ReviewResDTO.ReviewDTO toDTO(Review review) {
         return ReviewDTO.builder()
                 .id(review.getId())
                 .store(review.getStore().getId())
